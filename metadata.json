@@ -1,0 +1,5 @@
+{
+  "name": "Mundial 2026 Prode Challenge",
+  "description": "A web application to predict the results of the 2026 World Cup group stage matches and compete with friends. Enter your predictions for each match, see how you stack up against others on the leaderboard, and use the admin panel to input real match results to calculate scores.",
+  "requestFramePermissions": []
+}
