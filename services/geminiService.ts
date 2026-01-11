@@ -1,13 +1,15 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = process.env.API_KEY;
+// In Vite, environment variables exposed to the client must start with VITE_
+const API_KEY = process.env.VITE_API_KEY;
 
 if (!API_KEY) {
-  console.warn("API_KEY environment variable not set. Gemini features will be disabled.");
+  console.warn("VITE_API_KEY environment variable not set. Gemini features will be disabled.");
 }
 
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+// Ensure ai is only initialized if API_KEY exists to avoid errors.
+const ai = API_KEY ? new GoogleGenAI({ apiKey: API_KEY }) : null;
 
 export async function getPredictionAnalysis(
     homeTeam: string, 
@@ -15,7 +17,7 @@ export async function getPredictionAnalysis(
     homeScore: number, 
     awayScore: number
 ): Promise<string> {
-    if (!API_KEY) {
+    if (!ai) {
         return "Gemini API key is not configured. Analysis is unavailable.";
     }
 
